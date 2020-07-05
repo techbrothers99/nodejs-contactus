@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const ContactUs = require('./models/contactus');
 const config = require('./config/database');
+const router = require('./routes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.listen(3000);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
+app.use('/contact', router);
 
 app.get('/', (req, res) =>{ 
     ContactUs.find().sort({"createdAt":"-1"})
@@ -32,27 +34,3 @@ app.get('/about', (req, res) => {
     res.render('about-us', { title: 'About Us' });
 })
 
-app.get('/contact', (req, res) => {
-    res.render('contact-us', { title: 'Contact Us' });
-})
-
-app.post('/contact', (req, res) => {
-    const contactForm = new ContactUs(req.body);
-    contactForm.save().then( () => {
-        res.redirect("/");
-    }).catch(err => {
-        res.status(404).render('404', {title: '404 page not found'});
-    });
-})
-
-app.get('/contact/:id', (req, res) => {
-
-    const id= req.params.id;
-    ContactUs.findById(id)
-    .then( (data) => {
-        res.render('details', { title: 'Details', contactForm: data });
-    }).catch( err => {
-        console.log(err);
-        res.status(404).render('404', {title: '404 page not found'});
-    })
-})
