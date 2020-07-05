@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./common/header') %>
+<body>
+    <%- include('./common/menu') %>
+    <h1>Details</h1>
+    <table class="table table-sm">
+        <tbody>
+          <tr>
+            <th scope="row">First Name</th>
+            <td><%= contactForm.firstName %></td>
+          </tr>
+          <tr>
+            <th scope="row">Last Name</th>
+            <td><%= contactForm.lastName %></td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td><%= contactForm.email %></td>
+          </tr>
+          <tr>
+            <th scope="row">Subject</th>
+            <td><%= contactForm.subject %></td>
+          </tr>
+          <tr>
+            <th scope="row">Description</th>
+            <td><%= contactForm.description %></td>
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>

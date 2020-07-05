@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./common/header') %>
+<body>
+    <%- include('./common/menu') %>
+    <h1>Contact Form List</h1>
+    <% if(contactForms.length > 0) { %>
+        <table class="table table-striped">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+            <% contactForms.forEach( (contactForm) => { %>
+                <tr>
+                    <td><%= contactForm.firstName%></td>
+                    <td><%= contactForm.lastName%></td>
+                    <td><%= contactForm.email%></td>
+                    <td><%= contactForm.subject%></td>
+                    <td><a href="/contact/<%= contactForm.id %>">Show More</button></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } else {  %>
+
+    <% } %>
+</body>
+</html>
